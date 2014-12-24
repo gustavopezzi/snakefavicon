@@ -124,6 +124,12 @@ $(document).ready(function() {
         var img = document.createElement('img');
         var link = document.getElementById('favicon').cloneNode(true);
         link.href = canvas.toDataURL('image/png');
+
+        // remove old favicon element
+        //var oldFavIcon = document.getElementById("favicon");
+        //oldFavIcon.parentNode.removeChild(oldFavIcon);
+
+        // add new favicon
         document.body.appendChild(link);
     }
 
