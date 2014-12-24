@@ -6,15 +6,12 @@ $(document).ready(function() {
 
     // cell width
     var cw = 1;
-
     var d;
     var food;
     var score;
-
-    // an array of cells to make up our snake
     var snake_array;
 
-
+    
     function init() {
         d = "right";
         create_snake();
@@ -23,13 +20,11 @@ $(document).ready(function() {
 
         if (typeof game_loop != "undefined")
             clearInterval(game_loop);
+        
         game_loop = setInterval(paint, 60);
     }
 
-
-    init();
-
-
+    
     function create_snake() {
         var length = 5;
         snake_array = [];
@@ -42,13 +37,13 @@ $(document).ready(function() {
     function create_food() {
         food = {
             x: Math.round(Math.random() * (w - cw) / cw),
-            y: Math.round(Math.random() * (h - cw) / cw),
+            y: Math.round(Math.random() * (h - cw) / cw)
         };
     }
 
 
     function paint() {
-        // to avoid the snake trail we paint the background on every frame
+        // paint the background on every frame to avoid the snake trail
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, w, h);
         ctx.strokeStyle = "black";
@@ -102,16 +97,13 @@ $(document).ready(function() {
         // paint the food
         paint_cell(food.x, food.y);
         
-        // paint the score
-        //var score_text = "Score: " + score;
-        //ctx.fillText(score_text, 5, h - 5);
+        // change favicon with current canvas content
         changeFavIcon();
     }
 
 
-    // creates a generic function to paint cells
     function paint_cell(x, y) {
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.fillRect(x * cw, y * cw, cw, cw);
         ctx.strokeStyle = "white";
         ctx.strokeRect(x * cw, y * cw, cw, cw);
@@ -128,7 +120,6 @@ $(document).ready(function() {
     }
 
 
-    // change the favicon using the context
     function changeFavIcon() {
         var img = document.createElement('img');
         var link = document.getElementById('favicon').cloneNode(true);
@@ -137,7 +128,7 @@ $(document).ready(function() {
     }
 
 
-    // add keyboard controls
+    // keyboard control
     $(document).keydown(function(e) {
         var key = e.which;
         // adds another clause to prevent reverse gear
@@ -151,4 +142,6 @@ $(document).ready(function() {
             d = "down";
     })
 
+
+    init();
 })
